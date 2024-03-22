@@ -1,6 +1,6 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
-import '../item_widget.dart';
+import '../widget/item_widget.dart';
 import '../model/sound_data.dart';
 
 class HomeScreen extends StatefulWidget {

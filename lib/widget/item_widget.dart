@@ -1,7 +1,7 @@
 import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:flutter/material.dart';
 
-import 'model/sound_data.dart';
+import '../model/sound_data.dart';
 
 class ItemWidget extends StatelessWidget {
   Sound sound;
