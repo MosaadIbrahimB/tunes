@@ -1,7 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:tunes/screen/asma_allah_screen.dart';
+import 'package:tunes/screen/auraen_sound_screen.dart';
 import 'package:tunes/screen/home_screen.dart';
+
+import 'package:tunes/screen/splash_screen.dart';
+import 'package:tunes/screen/tasepahScreen.dart';
 
 
 import 'model/sound_data.dart';
@@ -17,9 +22,16 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return  MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: HomeScreen(),
+      initialRoute: HomeScreen.nameRoute,
+      routes: {
+        SplashScreen.nameRoute:(context)=>SplashScreen(),
+        HomeScreen.nameRoute:(context)=>HomeScreen(),
+        AsmaAllahScreen.nameRoute:(context)=>AsmaAllahScreen(),
+        QuranScreen.nameRoute:(context)=>QuranScreen(),
+        TasbehScreen.nameRoute:(context)=>TasbehScreen(),
+      },
     );
   }
 }
