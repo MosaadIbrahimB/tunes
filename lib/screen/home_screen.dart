@@ -19,7 +19,7 @@ class HomeScreen extends StatelessWidget {
     SlawtTimeModel(name: "Fager", time: "4.30", am: "Am"),
     SlawtTimeModel(name: "Sunraise", time: "5.30", am: "Am"),
     SlawtTimeModel(name: "Dhure", time: "12.30", am: "Am"),
-    SlawtTimeModel(name: "Aser", time: "3.30", am: "Am"),
+    SlawtTimeModel(name: "Aser", time: "3.30", am: "PM"),
   ];
   @override
   Widget build(BuildContext context) {
@@ -36,7 +36,7 @@ class HomeScreen extends StatelessWidget {
                 height: 100,
               ),
 
-              TimerWidget(),
+              const TimerWidget(),
               const Text(
                 "Fager",
                 style: TextStyle(
@@ -69,25 +69,20 @@ class HomeScreen extends StatelessWidget {
                         Navigator.of(context).pushNamed(QuranScreen.nameRoute);
                       },
                       child: NivgaterScreenList("assets/images/adeia.jpg")),
-                  SizedBox(width: 50,),
+                  const SizedBox(width: 50,),
                //السبحه
                   InkWell(
                       onTap: (){
                         Navigator.of(context).pushNamed(TasbehScreen.nameRoute);
                       },
                       child: NivgaterScreenList("assets/images/sebha.jpg")),
-                  SizedBox(width: 50,),
+                  const SizedBox(width: 50,),
                   // اسماء الله الحسنى
                   InkWell(
                       onTap: (){
                         Navigator.of(context).pushNamed(AsmaAllahScreen.nameRoute);
                       },
                       child: NivgaterScreenList("assets/images/logo.png")),
-
-
-
-
-
                 ],
                 ),
               )

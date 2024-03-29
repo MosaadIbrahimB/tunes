@@ -30,7 +30,7 @@ class SalwatTimeWidget extends StatelessWidget {
         const SizedBox(width: 10),
         Text(
           slawtTimeModel.am,
-          style: TextStyle(
+          style: const TextStyle(
             color: Colors.black,
             fontSize: 24,
           ),

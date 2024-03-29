@@ -1,3 +1,4 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -7,7 +8,6 @@ import 'package:tunes/screen/home_screen.dart';
 
 import 'package:tunes/screen/splash_screen.dart';
 import 'package:tunes/screen/tasepahScreen.dart';
-
 
 import 'model/sound_data.dart';
 
@@ -22,19 +22,47 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return  MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: HomeScreen.nameRoute,
+      home: QuranScreen(),
       routes: {
-        SplashScreen.nameRoute:(context)=>SplashScreen(),
-        HomeScreen.nameRoute:(context)=>HomeScreen(),
-        AsmaAllahScreen.nameRoute:(context)=>AsmaAllahScreen(),
-        QuranScreen.nameRoute:(context)=>QuranScreen(),
-        TasbehScreen.nameRoute:(context)=>TasbehScreen(),
+        SplashScreen.nameRoute: (context) => SplashScreen(),
+        HomeScreen.nameRoute: (context) => HomeScreen(),
+        AsmaAllahScreen.nameRoute: (context) => AsmaAllahScreen(),
+        QuranScreen.nameRoute: (context) => QuranScreen(),
+        TasbehScreen.nameRoute: (context) => TasbehScreen(),
       },
     );
   }
 }
 
+class Test extends StatelessWidget {
+  final player = AudioPlayer();
 
-
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(
+        child: Row(
+ mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            ElevatedButton(
+              onPressed: () {
+                 player.play(AssetSource("sound/audio1.mp3"));
+                print("play");
+              },
+              child: Text("play"),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                player.stop();
+                print("stop");
+              },
+              child: Text("stop"),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}

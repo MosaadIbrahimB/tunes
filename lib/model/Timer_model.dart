@@ -34,7 +34,8 @@ class _TimerWidgetState extends State<TimerWidget> {
   Widget build(BuildContext context) {
     return Text(
       '${_currentTime.hour.toString().padLeft(2, '0')}:'
-          '${_currentTime.minute.toString().padLeft(2, '0')}:${_currentTime.second.toString().padLeft(2, '0')}',
+          '${_currentTime.minute.toString().padLeft(2, '0')}:'
+          '${_currentTime.second.toString().padLeft(2, '0')}',
       style: const TextStyle(fontSize: 36, fontWeight: FontWeight.bold,color: Colors.white),
     );
   }

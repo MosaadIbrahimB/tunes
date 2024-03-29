@@ -1,122 +1,98 @@
-import 'package:assets_audio_player/assets_audio_player.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:audioplayers/audioplayers.dart';
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
+
 import '../model/sound_data.dart';
 
 class ItemWidget extends StatefulWidget {
-  Sound sound;
-  ItemWidget({required this.sound});
+  SoundModel sound;
+  AudioPlayer player = AudioPlayer();
+  int x ;
+  ItemWidget({required this.sound, required this.player,required this.x});
 
   @override
   State<ItemWidget> createState() => _ItemWidgetState();
 }
 
 class _ItemWidgetState extends State<ItemWidget> {
-  bool isPress = true;
+  bool play = false;
+  bool changColor = true;
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 200,
+    print("x ${ widget. x}");
+    print("widget.sound.index ${widget.sound.index}");
+    return Directionality(
+      textDirection: TextDirection.rtl,
       child: Card(
         margin: const EdgeInsets.all(8),
-      child: Row(
-        children: [
-          Expanded(child: Padding(
-            padding: const EdgeInsets.only(left: 8.0),
-            child: Text("Player ${widget.sound.index + 1}",style: const TextStyle(
-              fontSize: 18,
-
-            ),),
-          )),
-          Padding(
-            padding: const EdgeInsets.only(right: 8.0),
-            child: GestureDetector(
-              onTap: () {
-
-                OnStop(widget.sound.sound);
-              },
-              child: CircleAvatar(
-                  radius: 24,
-                  backgroundColor: Colors.blue,
-                  child: Icon(
-                    Icons.stop_circle,
-                    size: 45,
-                    color: Colors.grey[200],
-                  )),
+        child: Row(
+          children: [
+            Expanded(
+                child: Padding(
+              padding: const EdgeInsets.only(left: 8.0),
+              child: Text(
+                widget.sound.nameDoaa,
+                style: const TextStyle(
+                    fontSize: 18,
+                   ),
+              ),
+            )),
+            Padding(
+              padding: const EdgeInsets.only(right: 8.0),
+              child: GestureDetector(
+                onTap: () {
+                  onPlay(widget.sound.soundName);
+                },
+                child: CircleAvatar(
+                    radius: 26,
+                    backgroundColor: Colors.blue,
+                    child: Icon(
+                      !play ? Icons.play_circle : Icons.pause,
+                      size: 45,
+                      color: Colors.grey[200],
+                    )),
+              ),
             ),
-          ),
-SizedBox(width: 10,),
-          Padding(
-            padding: const EdgeInsets.only(right: 8.0),
-            child: GestureDetector(
-              onTap: () {
-                setState(() {
-                  isPress = !isPress;
-                });
-                onPlay(widget.sound.sound);
-              },
-              child: CircleAvatar(
-                  radius: 24,
-                  backgroundColor: Colors.blue,
-                  child: Icon(
-                    Icons.play_circle,
-                    size: 45,
-                    color: Colors.grey[200],
-                  )),
-            ),
-          ),
-
-
-
-        ],
-      ),
+          ],
+        ),
       ),
     );
   }
+
+//start play =false
   onPlay(String sound) async {
     try {
-      AssetsAudioPlayer.newPlayer().open(
-        Audio(sound),
-        autoStart: true,
-        showNotification: true,
-      );
-
-      // final player = AudioPlayer();
-      // await player.play(UrlSource(sound));
+      if (play) {
+        onStop();
+        return;
+      } else {
+        await widget.player!.play(AssetSource(widget.sound.soundName));
+        setState(() {
+          // x = -2;
+          // x = widget.sound.index;
+          play = true;
+        });
+      }
+      print(play);
     } on Exception catch (e) {
       print("error ${e.toString()}");
     }
   }
-  OnStop(String sound)async{
-    try {
-      AssetsAudioPlayer.newPlayer().stopped;
 
-      // final player = AudioPlayer();
-      // await player.play(UrlSource(sound));
+  onStop() {
+    try {
+      print("Stop");
+      setState(() {
+        // x = -1;
+        play = false;
+      });
+
+      print("play in stop =$play");
+      print("x in stop =${ widget. x}");
+
+      widget.player.stop();
     } on Exception catch (e) {
       print("error ${e.toString()}");
     }
   }
 }
-/*  child: ListTile(
-          title: Text("Player ${widget.sound.index + 1}"),
-          subtitle: GestureDetector(
-            onTap: () {
-              setState(() {
-                isPress = !isPress;
-              });
-              onPlay(widget.sound.sound);
-            },
-            child: CircleAvatar(
-                radius: 24,
-                backgroundColor: Colors.blue,
-                child: Icon(
-                  isPress ? Icons.play_circle : Icons.stop_circle,
-                  size: 45,
-                  color: Colors.grey[200],
-                )),
-          ),
-        ),*/
