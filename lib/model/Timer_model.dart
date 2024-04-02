@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class TimerWidget extends StatefulWidget {
   const TimerWidget({super.key});
@@ -12,14 +13,19 @@ class TimerWidget extends StatefulWidget {
 class _TimerWidgetState extends State<TimerWidget> {
   late Timer _timer;
   late DateTime _currentTime;
-
+  String formattedDate = '';
+  String clock = '';
+  String date = '';
   @override
   void initState() {
     super.initState();
-    _currentTime = DateTime.now();
+
     _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
       setState(() {
         _currentTime = DateTime.now();
+        formattedDate =
+            DateFormat().add_yMMMEd().add_jms().format(_currentTime);
+        clock = formattedDate.substring(16);
       });
     });
   }
@@ -33,10 +39,9 @@ class _TimerWidgetState extends State<TimerWidget> {
   @override
   Widget build(BuildContext context) {
     return Text(
-      '${_currentTime.hour.toString().padLeft(2, '0')}:'
-          '${_currentTime.minute.toString().padLeft(2, '0')}:'
-          '${_currentTime.second.toString().padLeft(2, '0')}',
-      style: const TextStyle(fontSize: 36, fontWeight: FontWeight.bold,color: Colors.white),
+      clock,
+      style: const TextStyle(
+          fontSize: 28, fontWeight: FontWeight.bold, color: Colors.white),
     );
   }
 }
