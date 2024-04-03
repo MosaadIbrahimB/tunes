@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 import '../shared/tasbeh_shared.dart';
+import '../widget/tasbeh_widget/number_tasbeh_widget.dart';
+import '../widget/tasbeh_widget/ui_btn_sabah_widget.dart';
 
 class TasbehScreen extends StatefulWidget {
   static const String nameRoute = "TasbehScreen";
@@ -11,7 +13,6 @@ class TasbehScreen extends StatefulWidget {
 
 class _TasbehScreenState extends State<TasbehScreen> {
   int currentIndex = 0;
-  int l = 0;
   int numberOfTasbeh = 0;
   int allNumberOfTasbeh = 0;
 
@@ -149,92 +150,5 @@ class _TasbehScreenState extends State<TasbehScreen> {
         nextItem();
       }
     });
-  }
-}
-
-class NumberTasbehWidget extends StatelessWidget {
-  const NumberTasbehWidget({
-    super.key,
-    required this.number,
-    required this.text,
-    this.numberLimtedTasbehText = "",
-  });
-
-  final int number;
-  final String text;
-  final String? numberLimtedTasbehText;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.symmetric(
-          horizontal: MediaQuery.of(context).size.width * .2),
-      decoration: BoxDecoration(
-          color: Colors.black26,
-          borderRadius: BorderRadius.circular(20),
-          border: Border.all(color: Colors.white, width: 2)),
-      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(
-            "$numberLimtedTasbehText  $number",
-            style: const TextStyle(
-                fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white),
-          ),
-          const SizedBox(width: 15),
-          Text(
-            "$text ",
-            style: const TextStyle(
-                fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class UIBtnSabahWidget extends StatefulWidget {
-  var function;
-  UIBtnSabahWidget({this.function});
-
-  @override
-  State<UIBtnSabahWidget> createState() => _UIBtnSabahWidgetState();
-}
-
-class _UIBtnSabahWidgetState extends State<UIBtnSabahWidget> {
-  int c = 0;
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        widget.function();
-
-        if (c > 100) {
-          setState(() {
-            c = 0;
-          });
-        } else {
-          setState(() {
-            c = c + 10;
-          });
-        }
-
-        print("cccccccccccccccc${c}");
-      },
-      child: CircleAvatar(
-        radius: 83,
-        backgroundColor: Colors.white,
-        child: CircleAvatar(
-          radius: 80,
-          backgroundColor: Color(0xff123456 + 4 * c),
-          child: const Text(
-            'سبح',
-            style: TextStyle(
-                fontSize: 30, color: Colors.white, fontWeight: FontWeight.bold),
-          ),
-        ),
-      ),
-    );
   }
 }
