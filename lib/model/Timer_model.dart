@@ -16,10 +16,14 @@ class _TimerWidgetState extends State<TimerWidget> {
   String formattedDate = '';
   String clock = '';
   String date = '';
+
   @override
   void initState() {
     super.initState();
+    timerFunction();
+  }
 
+  timerFunction() {
     _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
       setState(() {
         _currentTime = DateTime.now();

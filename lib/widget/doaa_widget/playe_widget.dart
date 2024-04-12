@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tunes/widget/doaa_widget/volume_controller_wdget.dart';
 
-import '../../shared/dowa_provider_model.dart';
+import '../../provider/dowa_provider_model.dart';
 
 
 

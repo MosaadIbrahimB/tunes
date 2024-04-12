@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../shared/dowa_provider_model.dart';
+import '../provider/dowa_provider_model.dart';
 import '../widget/doaa_widget/playe_widget.dart';
 
 class DowaScreen extends StatefulWidget {
